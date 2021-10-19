@@ -184,16 +184,15 @@ export class documentacionMenu extends connect(store, MEDIA_CHANGE, SCREEN, MENU
 
     mostrarDocumentos(e) {
         this.currentSelected = e.currentTarget.option;
-        this.update();
-        //this.modo = "vista";
+
         this.hidden = true;
-        store.dispatch(showFormMenuUpdate(e.currentTarget.item));
 
         store.dispatch(
             getDocumentacion({
                 filter: "IdMenu eq " + e.currentTarget.option + " and Activo",
             })
         );
+        this.update();
     }
 
     altaDocumento(e) {
