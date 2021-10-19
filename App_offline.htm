@@ -1,0 +1,71 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Off Line</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet" />
+    </head>
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            place-content: center;
+            justify-items: center;
+            font-family: nunito;
+            background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+        }
+
+        .reloj {
+            display: grid;
+            grid-auto-flow: column;
+            place-content: center;
+            gap: 1rem;
+        }
+        .reloj h1 {
+            padding: 1rem;
+            background-color: rgb(245, 167, 0, 0.8);
+            border-radius: 5px;
+            color: white;
+        }
+    </style>
+    <body>
+        <h1>Estamos trabajando para brindarle un mejor servicio</h1>
+        <h2>Volveremos en:</h2>
+        <div class="reloj">
+            <h1 id="horas"></h1>
+            <h1 id="minutos"></h1>
+            <h1 id="segundos"></h1>
+        </div>
+    </body>
+    <script>
+        const regresoHora = 22;
+        const regresoMinutos = 24;
+
+        let horas = regresoHora - new Date().getHours();
+        if (horas < 0) horas = 23 - new Date().getHours() + regresoHora;
+        let minutos = regresoMinutos - 1 - new Date().getMinutes();
+        if (minutos < 0) minutos = 59 - new Date().getMinutes() + regresoMinutos;
+        if (minutos > regresoMinutos) horas--;
+
+        let segundos = 60 - new Date().getSeconds();
+        const timer = setInterval(() => {
+            document.querySelector("#horas").innerHTML = (horas + 100).toString().substr(1, 2);
+            document.querySelector("#minutos").innerHTML = (minutos + 100).toString().substr(1, 2);
+            document.querySelector("#segundos").innerHTML = (segundos + 100).toString().substr(1, 2);
+
+            if (segundos > -1) segundos--;
+            if (segundos == -1) minutos--;
+            if (segundos == -1) segundos = 59;
+            if (minutos == -1) horas--;
+            if (minutos == -1) minutos = 59;
+        }, 1000);
+    </script>
+</html>
