@@ -81,8 +81,13 @@ export const setStep = (step) => ({
     step: step,
 });
 
-export const showFormAdd = () => ({
+/*export const showFormAdd = () => ({
     type: SHOW_MYFORM_ADD,
+});*/
+
+export const showFormAdd = (item) => ({
+    type: SHOW_MYFORM_ADD,
+    item: item,
 });
 
 export const showFormUpdate = (item) => ({

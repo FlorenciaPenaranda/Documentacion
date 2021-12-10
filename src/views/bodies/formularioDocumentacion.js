@@ -109,11 +109,11 @@ export class formularioDocumentacion extends connect(store, MEDIA_CHANGE, SCREEN
 
         if (name == SHOW_MYFORM_ADD) {
             this.hidden = false;
-            this.seleccionado = state.ui.form.documentacionItem;
+            this.seleccionado = state.ui.form.menuItem;
 
             this.menuOculto = true;
             this.shadowRoot.querySelector("#descripcion").value = "";
-            this.shadowRoot.querySelector("#idMenu").value = store.getState().ui.form.menuItem.Id;
+            this.shadowRoot.querySelector("#idMenu").value = this.seleccionado;
 
             this.modo = MODO_ADD;
             this.update();

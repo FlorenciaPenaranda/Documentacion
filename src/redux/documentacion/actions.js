@@ -20,9 +20,10 @@ export const DELETE_ERROR = "[Documentacion] Delete Error";
 export const AGREGAR_IMAGEN = "[Documentacion] Agregar Imagen";
 export const AGREGAR_IMAGEN_SUCCESS = "[Documentacion] Agregar Imagen Success";
 
-export const getDocumentacion = (options) => ({
+export const getDocumentacion = (options, id) => ({
     type: GET,
     options: options,
+    id: id,
 });
 /* export const get = function (options) {
     return { type: GET, options: options }

@@ -171,6 +171,7 @@ export class menuPrincipal extends connect(store, MEDIA_CHANGE, SCREEN, USUARIO)
             store.dispatch(goTo(e.currentTarget.option));
         }
         this.update();
+        console.log(e.currentTarget.option);
     }
 
     stateChanged(state, name) {

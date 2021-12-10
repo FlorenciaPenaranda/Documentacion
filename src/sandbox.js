@@ -69,10 +69,11 @@ store.dispatch(filtrar());*/
 //setTimeout(() => { store.dispatch(goTo("instructivos")); }, 1000)
 
 //store.dispatch(updateDoc(23, "Descripcion", "Descp. prueba"));
-
+viewMode("main");
 store.dispatch(captureMedia());
+store.dispatch(goTo("documentacionMenu"));
 
-if ("credentials" in navigator) {
+/*if ("credentials" in navigator) {
     navigator.credentials
         .get({ password: true, mediation: "optional" })
         .catch((err) => console.log("navigator.credentials.get: No funciona en Firefox"))
@@ -85,7 +86,7 @@ if ("credentials" in navigator) {
         });
 } else {
     store.dispatch(goTo("login"));
-}
+}*/
 
 window["__FuncionesPublicas__"] = {
     login: (email, password) => {

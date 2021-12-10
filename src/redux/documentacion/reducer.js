@@ -23,6 +23,7 @@ const initialState = {
     options: null,
     mesanjeError: null,
     agregarImagenTimeStamp: null,
+    idSeleccionado: null,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -32,9 +33,12 @@ export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case GET:
             newState.options = action.options;
+            newState.idSeleccionado = action.id;
+
             break;
         case GET_SUCCESS:
             newState.entities = action.payload.receive;
+
             newState.timeStamp = new Date().getTime();
             break;
 

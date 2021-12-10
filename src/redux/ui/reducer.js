@@ -130,6 +130,7 @@ export const reducer = (state = initialState, action) => {
             break;
         case SHOW_MYFORM_ADD:
             newState.form.timeStampAdd = new Date().getTime();
+            newState.form.menuItem = action.item;
             //newState.form.hidden = false;
             break;
         case SHOW_MYFORM_UPDATE:

@@ -188,9 +188,12 @@ export class documentacionMenu extends connect(store, MEDIA_CHANGE, SCREEN, MENU
         this.hidden = true;
 
         store.dispatch(
-            getDocumentacion({
-                filter: "IdMenu eq " + e.currentTarget.option + " and Activo",
-            })
+            getDocumentacion(
+                {
+                    filter: "IdMenu eq " + e.currentTarget.option + " and Activo",
+                },
+                e.currentTarget.option
+            )
         );
         this.update();
     }

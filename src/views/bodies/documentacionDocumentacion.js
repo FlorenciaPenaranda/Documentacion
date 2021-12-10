@@ -202,7 +202,7 @@ export class documentacionDocumentacion extends connect(store, MEDIA_CHANGE, SCR
     }
 
     altaDocumento(e) {
-        store.dispatch(showFormAdd());
+        store.dispatch(showFormAdd(store.getState().documentacion.idSeleccionado));
 
         //this.modo = "alta";
     }
