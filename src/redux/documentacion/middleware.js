@@ -22,6 +22,7 @@ import {
 import { showSpinner, hideSpinner, showError, showDocumentacion } from "../ui/actions";
 import { apiRequest, apiUpdate, apiDelete, apiAdd, apiAction } from "../api/actions";
 import { goTo } from "../routing/actions.js";
+import { store } from "../../redux/store";
 
 export const updateItem =
     ({ dispatch }) =>
@@ -129,6 +130,7 @@ export const agregarImagen =
             const key = "pId=" + action.id + ",pNombre='" + action.nombre + "'";
             const body = action.imagen;
             const accion = "";
+            //console.log(action.id);
             dispatch(apiAction(agregarImagenFetch, body, key, accion, AGREGAR_IMAGEN_SUCCESS, ADD_ERROR));
         }
     };

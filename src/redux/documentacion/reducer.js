@@ -34,7 +34,6 @@ export const reducer = (state = initialState, action) => {
         case GET:
             newState.options = action.options;
             newState.idSeleccionado = action.id;
-
             break;
         case GET_SUCCESS:
             newState.entities = action.payload.receive;
@@ -68,7 +67,7 @@ export const reducer = (state = initialState, action) => {
             break;
         case DELETE_SUCCESS:
             newState.entities = newState.entities.filter((documentacion) => {
-                //console.log(documentacion.Id);
+                console.log(documentacion.Id);
                 //console.log(action.payload.send) ?? o action.id de la acction delete ??;
                 return documentacion.Id != action.id;
             });

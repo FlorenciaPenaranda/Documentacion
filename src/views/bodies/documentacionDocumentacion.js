@@ -203,8 +203,6 @@ export class documentacionDocumentacion extends connect(store, MEDIA_CHANGE, SCR
 
     altaDocumento(e) {
         store.dispatch(showFormAdd(store.getState().documentacion.idSeleccionado));
-
-        //this.modo = "alta";
     }
 
     async guardarImagen(file) {
@@ -216,7 +214,7 @@ export class documentacionDocumentacion extends connect(store, MEDIA_CHANGE, SCR
     }
 
     setFile(e) {
-        console.log(e.currentTarget.files);
+        //console.log(e.currentTarget.files);
         const file = e.currentTarget.files[0];
 
         /*if ("pdf".indexOf(extension) == -1) {
