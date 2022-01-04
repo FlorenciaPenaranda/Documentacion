@@ -135,4 +135,14 @@ export const agregarImagen =
         }
     };
 
-export const middleware = [updateItem, get, processGet, processError, processDelete, updateField, remove, add, processUpdateField, agregarImagen];
+export const agregarImagerSuccess =
+    ({ dispatch, getState }) =>
+    (next) =>
+    (action) => {
+        next(action);
+        if (action.type === AGREGAR_IMAGEN_SUCCESS) {
+            dispatch(alert("El archivo PDF fue agregado a la documentación"));
+        }
+    };
+
+export const middleware = [updateItem, get, processGet, processError, processDelete, updateField, remove, add, processUpdateField, agregarImagen, agregarImagerSuccess];
