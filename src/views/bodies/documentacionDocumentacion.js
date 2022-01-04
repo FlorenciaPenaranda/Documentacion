@@ -20,8 +20,9 @@ const SCREEN = "screen.timeStamp";
 const DOCUMENTACION = "documentacion.timeStamp";
 const BUSQUEDA = "ui.busqueda.timeStamp";
 const AGREGAR_IMAGEN = "documentacion.agregarImagenTimeStamp";
+const USUARIO = "ui.usuario.timeStamp";
 
-export class documentacionDocumentacion extends connect(store, MEDIA_CHANGE, SCREEN, DOCUMENTACION, BUSQUEDA, AGREGAR_IMAGEN)(LitElement) {
+export class documentacionDocumentacion extends connect(store, MEDIA_CHANGE, SCREEN, DOCUMENTACION, BUSQUEDA, USUARIO, AGREGAR_IMAGEN)(LitElement) {
     constructor() {
         super();
         this.area = "body";
@@ -29,6 +30,7 @@ export class documentacionDocumentacion extends connect(store, MEDIA_CHANGE, SCR
         this.documentosFiltrados = [];
         this.seleccionado = null;
         this.menu = [];
+        this.editable = false;
     }
 
     static get styles() {
@@ -99,8 +101,11 @@ export class documentacionDocumentacion extends connect(store, MEDIA_CHANGE, SCR
                 padding-left: 2rem;
                 /*transform: translateX(50%);*/
             }
-            *[oculto] {
+            *[visibility] {
                 visibility: hidden;
+            }
+            *[oculto] {
+                display: none;
             }
         `;
     }
@@ -110,7 +115,9 @@ export class documentacionDocumentacion extends connect(store, MEDIA_CHANGE, SCR
             <div class="documentacion">
                 <div class="contorles">
                     <div class="atras" @click=${this.atras}>${ATRAS}</div>
-                    <button class="add" btn2 @click=${this.altaDocumento}>${ADD} Agregar documentación</button>
+                    <div ?visibility=${!this.editable}>
+                        <button class="add" btn2 @click=${this.altaDocumento}>${ADD} Agregar documentación</button>
+                    </div>
                     <busqueda-component id="busqueda"></busqueda-component>
                 </div>
                 <div style="overflow-y: auto">
@@ -119,9 +126,9 @@ export class documentacionDocumentacion extends connect(store, MEDIA_CHANGE, SCR
                     <div class="row cursor"  >                                            
                         <div class="button cursor"  .item=${item} @click=${this.AbrirDocumento}>${item.Descripcion}</div>
                         <div class="fechaUpdate" .item=${item} @click=${this.AbrirDocumento}>${new Date(item.FechaUltimaModificacion).toLocaleDateString()}</div>                        
-                        <div class="button cursor" .item=${item} @click=${this.openFiles}>${PDF}</div>
-                        <div class="button cursor" .item=${item} @click=${this.ModificarDocumento}>${EDIT}</div>
-                        <div class="button cursor" .idItem=${item.Id} @click=${this.BorrarDocumento}>${DELETE}</div>
+                        <div class="button cursor" .item=${item} ?visibility=${!this.editable} @click=${this.openFiles}>${PDF}</div>
+                        <div class="button cursor" .item=${item} ?visibility=${!this.editable} @click=${this.ModificarDocumento}>${EDIT}</div>
+                        <div class="button cursor" .idItem=${item.Id} ?visibility=${!this.editable} @click=${this.BorrarDocumento}>${DELETE}</div>
                     </div>
                     </div></div>
                     
@@ -169,6 +176,10 @@ export class documentacionDocumentacion extends connect(store, MEDIA_CHANGE, SCR
 
         if (name == AGREGAR_IMAGEN) {
             store.dispatch(getDocumentacion(state.documentacion.options));
+        }
+
+        if (name == USUARIO) {
+            this.editable = state.ui.usuario.id != null && state.ui.usuario.id != undefined;
         }
     }
 

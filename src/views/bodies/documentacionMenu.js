@@ -17,8 +17,9 @@ const MEDIA_CHANGE = "ui.media.timeStamp";
 const SCREEN = "screen.timeStamp";
 const MENU = "menu.timeStamp";
 const BUSQUEDA = "ui.busqueda.texto";
+const USUARIO = "ui.usuario.timeStamp";
 
-export class documentacionMenu extends connect(store, MEDIA_CHANGE, SCREEN, MENU, BUSQUEDA)(LitElement) {
+export class documentacionMenu extends connect(store, MEDIA_CHANGE, SCREEN, MENU, USUARIO, BUSQUEDA)(LitElement) {
     constructor() {
         super();
         this.area = "body";
@@ -26,7 +27,7 @@ export class documentacionMenu extends connect(store, MEDIA_CHANGE, SCREEN, MENU
         this.itemsFiltrados = [];
         this.documentos = [];
         this.currentSelected = -1;
-        //this.modo = "vista";
+        this.editable = false;
     }
 
     static get properties() {
@@ -106,8 +107,8 @@ export class documentacionMenu extends connect(store, MEDIA_CHANGE, SCREEN, MENU
                 background-color: var(--color-blanco);
                 color: var(--color-negro);
             }
-            *[oculto] {
-                display: none;
+            *[visibility] {
+                visibility: hidden;
             }
         `;
     }
@@ -129,7 +130,10 @@ export class documentacionMenu extends connect(store, MEDIA_CHANGE, SCREEN, MENU
             <div class="body">
                 <div class="menu">
                     <div class="contorles">
-                        <button class="add" btn2 @click=${this.altaDocumento}>${ADD} Nuevo Menú</button>
+                        <div ?visibility=${!this.editable}>
+                            <button class="add" btn2 @click=${this.altaDocumento}>${ADD} Nuevo Menú</button>
+                        </div>
+
                         <busqueda-component></busqueda-component>
                     </div>
                     <div style="overflow-y: auto">
@@ -137,7 +141,7 @@ export class documentacionMenu extends connect(store, MEDIA_CHANGE, SCREEN, MENU
                             return html`
                                 <div ?selected=${this.currentSelected == item.Id} class="btnMenu cursor">
                                     <div @click="${this.mostrarDocumentos}" .option="${item.Id}" .item=${item}>${item.Descripcion}</div>
-                                    <div class="button cursor" .item=${item} @click=${this.ModificarMenu}>${EDIT}</div>
+                                    <div class="button cursor" .item=${item} @click=${this.ModificarMenu} ?visibility=${!this.editable}>${EDIT}</div>
                                     <div @click="${this.mostrarDocumentos}" .option="${item.Id}" .item=${item}>${NEXT}</div>
                                 </div>
                             `;
@@ -179,6 +183,10 @@ export class documentacionMenu extends connect(store, MEDIA_CHANGE, SCREEN, MENU
                 }
                 this.update();
             }
+        }
+
+        if (name == USUARIO) {
+            this.editable = state.ui.usuario.id != null && state.ui.usuario.id != undefined;
         }
     }
 

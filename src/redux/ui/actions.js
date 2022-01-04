@@ -32,6 +32,10 @@ export const HIDE_DOCUMENTACION = "[ui] hide documenacion";
 
 export const BUSCAR = "[ui] buscar";
 
+export const USUARIO = "[ui] usuario";
+export const USUARIO_SUCCES = "[ui] usuario success";
+export const USUARIO_ERROR = "[ui] usuario error";
+
 export const showSpinner = () => ({
     type: SHOW_SPINNER,
 });
@@ -119,4 +123,9 @@ export const hideDocumentacion = () => ({
 export const buscar = (texto) => ({
     type: BUSCAR,
     texto: texto,
+});
+
+export const usuario = (id) => ({
+    type: USUARIO,
+    id: id,
 });

@@ -27,6 +27,9 @@ import {
     SHOW_DOCUMENTACION,
     HIDE_DOCUMENTACION,
     BUSCAR,
+    USUARIO,
+    USUARIO_SUCCES,
+    USUARIO_ERROR,
 } from "./actions";
 
 const initialState = {
@@ -74,6 +77,10 @@ const initialState = {
     },
     busqueda: {
         texto: null,
+        timeStamp: null,
+    },
+    usuario: {
+        id: null,
         timeStamp: null,
     },
 };
@@ -157,6 +164,11 @@ export const reducer = (state = initialState, action) => {
         case BUSCAR:
             newState.busqueda.timeStamp = new Date().getTime();
             newState.busqueda.texto = action.texto;
+            break;
+        case USUARIO:
+            newState.usuario.timeStamp = new Date().getTime();
+            const usuarioId = [20003164, 20002718, 20004030, 20002749].find((u) => u == action.id);
+            newState.usuario.id = usuarioId;
     }
     return newState;
 };

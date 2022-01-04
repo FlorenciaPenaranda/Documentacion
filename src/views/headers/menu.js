@@ -129,7 +129,7 @@ export class menuPrincipal extends connect(store, MEDIA_CHANGE, SCREEN, USUARIO)
             </div>
 
             <div id="opciones" class="grid column" @click=${this.toggleMenu}>
-                <div class="menuItem" @click=${this.click} .option=${"logout"}>Salir</div>
+                <div class="menuItem" @click=${this.click} .option=${"logout"}></div>
             </div>
         `;
     }
