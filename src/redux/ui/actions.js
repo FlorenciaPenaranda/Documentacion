@@ -36,6 +36,10 @@ export const USUARIO = "[ui] usuario";
 export const USUARIO_SUCCES = "[ui] usuario success";
 export const USUARIO_ERROR = "[ui] usuario error";
 
+export const SECTOR = "[ui] sector";
+export const SECTOR_SUCCES = "[ui] sector success";
+export const SECTOR_ERROR = "[ui] sector error";
+
 export const showSpinner = () => ({
     type: SHOW_SPINNER,
 });
@@ -128,4 +132,9 @@ export const buscar = (texto) => ({
 export const usuario = (id) => ({
     type: USUARIO,
     id: id,
+});
+
+export const sector = (idSector) => ({
+    type: SECTOR,
+    idSector: idSector,
 });

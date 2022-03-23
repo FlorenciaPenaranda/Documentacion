@@ -168,9 +168,21 @@ export class documentacionMenu extends connect(store, MEDIA_CHANGE, SCREEN, MENU
             this.update();
         }
 
-        if (name == MENU) {
+        /*if (name == MENU) {
             this.items = state.menu.entities;
             this.itemsFiltrados = state.menu.entities;
+            this.update(); // corre de nuevo el render
+        }*/
+
+        if (name == MENU) {
+            if (store.getState().ui.sector.idSector == 1) {
+                this.items = state.menu.entities.filter((item) => item.IdSector == 1);
+                this.itemsFiltrados = state.menu.entities.filter((item) => item.IdSector == 1);
+            }
+            if (store.getState().ui.sector.idSector == 2) {
+                this.items = state.menu.entities.filter((item) => item.IdSector == 2);
+                this.itemsFiltrados = state.menu.entities.filter((item) => item.IdSector == 2);
+            }
             this.update(); // corre de nuevo el render
         }
 

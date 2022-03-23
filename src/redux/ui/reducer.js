@@ -30,6 +30,9 @@ import {
     USUARIO,
     USUARIO_SUCCES,
     USUARIO_ERROR,
+    SECTOR,
+    SECTOR_SUCCES,
+    SECTOR_ERROR,
 } from "./actions";
 
 const initialState = {
@@ -81,6 +84,10 @@ const initialState = {
     },
     usuario: {
         id: null,
+        timeStamp: null,
+    },
+    sector: {
+        idSector: null,
         timeStamp: null,
     },
 };
@@ -167,8 +174,14 @@ export const reducer = (state = initialState, action) => {
             break;
         case USUARIO:
             newState.usuario.timeStamp = new Date().getTime();
-            const usuarioId = [20003164, 20002718, 20004030, 20002749].find((u) => u == action.id);
+            const usuarioId = ["gmachuca", "cboggio", "labril", "adamiani", "gdominguez", "dcarballo"].find((u) => u == action.id);
             newState.usuario.id = usuarioId;
+            break;
+        case SECTOR:
+            newState.sector.timeStamp = new Date().getTime();
+            const sectorId = [1, 2].find((u) => u == action.idSector);
+            newState.sector.idSector = sectorId;
+            break;
     }
     return newState;
 };

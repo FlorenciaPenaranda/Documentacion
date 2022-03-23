@@ -14,7 +14,7 @@ import { viewManager } from "./views/manager";
 import { login } from "./redux/autorizacion/actions";
 import { register as registerSW, activate as activateSW } from "./libs/serviceWorker";
 
-import { usuario } from "./redux/ui/actions";
+import { usuario, sector } from "./redux/ui/actions";
 
 if (process.env.NODE_ENV === "production") {
     registerSW();
@@ -28,8 +28,10 @@ store.dispatch(goTo("documentacionMenu"));
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const usuarioId = urlParams.get("id");
+const sectorId = urlParams.get("idSector");
 
 store.dispatch(usuario(usuarioId));
+store.dispatch(sector(sectorId));
 
 /*if ("credentials" in navigator) {
     navigator.credentials

@@ -194,9 +194,11 @@ export class formularioDocumentacion extends connect(store, MEDIA_CHANGE, SCREEN
 
         if (this.modo == MODO_ADD_MENU) {
             const descripcion = this.shadowRoot.querySelector("#descripcion").value;
+            const idSector = store.getState().ui.sector.idSector;
 
             const item = {
                 Descripcion: descripcion,
+                IdSector: idSector,
             };
 
             if (confirm("Desea agregar nuevo menú?")) {
